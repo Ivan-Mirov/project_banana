@@ -98,17 +98,17 @@ There is no NaN in the dataset
 
 Let"s look if there are some outlier in the Dataset""")
 
-get_graph(f"{API_URL}/box1", "Plot1")
+get_graph(f"{API_URL}/box1", "Plot1_quality_sc_ripness_ind")
 
 get_info(f"{API_URL}/analys1", "check data where 'quality_score' < 1.2")
 get_info(f"{API_URL}/analys2", "look at correlation:")
 
 st.text("Despite the fact that we have a rather small value in quality_score I don't think that it is outlier because it seems similar at the rest data")
-get_graph(f"{API_URL}/box2", "Plot2")
-get_graph(f"{API_URL}/box3", "Plot3")
-get_graph(f"{API_URL}/box4", "Plot4")
-get_graph(f"{API_URL}/box5", "Plot5")
-get_graph(f"{API_URL}/box6", "Plot6")
+get_graph(f"{API_URL}/box2", "Plot2_firmness_kgf")
+get_graph(f"{API_URL}/box3", "Plot3_sugar_length")
+get_graph(f"{API_URL}/box4", "Plot4_weight_nitrogen")
+get_graph(f"{API_URL}/box5", "Plot5_tree_age_years")
+get_graph(f"{API_URL}/box6", "Plot6_altitude_rainfall")
 
 st.text("Looking at the rest boxplots we can see that they don't have any outliers")
 st.header("Plots")
@@ -133,7 +133,7 @@ get_graph(f"{API_URL}/boxx3", "Plot12")
 st.text("Here also in all kinds of bananas the amount of unripe and premium bananas are small however the amount of processing and good bananas are much bigger")
 
 st.header("Data transformation")
-st.text("Let's do two new columns: quality_number(quality category turned to number from 1 to 4) and sugar_per_w(the amount of sugar per gramm)")
+st.text("Let's do two new columns: quality_number(quality category turned to number from 1 to 4) and sugar_g(the amount of sugar in gramms)")
 get_info(f"{API_URL}/change", "Transformed data:")
 
 st.header("Hypotesis")
@@ -167,7 +167,7 @@ types = ["Blue Java",
  "Manzano",
  "Plantain",
  "Red Dacca"]
-choice_t = st.selectbox("Choose country", types)
+choice_t = st.selectbox("Choose breed", types)
 if st.button("Search"):
     response = requests.get(f"{API_URL}/filter", params={"country": choice_c, "type": choice_t})
     if response.status_code == 200:
@@ -186,7 +186,7 @@ clas = ["Unripe",
  "Premium"]
 
 choice_cc = st.selectbox("Choose a country", countries)
-choice_tt = st.selectbox("Choose a country", types)
+choice_tt = st.selectbox("Choose a breed", types)
 choice_cl = st.selectbox("Choose a banana class", clas)
 #qua = st.number_input("Quality_score", min_value=0.0, value=0.0, step=0.01, format="%.2f")
 rip = st.number_input("Ripeness_index", min_value=0.0, value=0.0, step=0.01, format="%.2f")

@@ -220,10 +220,10 @@ def get_df():
 @app.get("/filter")
 def query_data(country: str, type: str):# = Query(..., ge=0)):
     """
-    Get entries filtered by city and minimum age.
+    Get entries filtered by country and breed of banana.
     """
     result = df[(df["region"] == country) & (df["variety"] == type)]
-    return df.fillna("").to_dict()#orient="records")
+    return result.fillna("").to_dict()#orient="records")
 
 @app.post("/add")
 def add_data(entry: NewEntry):
